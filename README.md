@@ -56,3 +56,34 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+## Instruction
+
+After cloning this in your Visual Studio Code from GitHub, command these in your terminal:
+
+1. Composer install
+2. cp .env.example .env
+3. php artisan key:generate(if wala app_key inside the env.)
+4. npm install preline
+5. php artisan migrate
+
+Before you proceed to login, make sure you command these in your terminal:
+
+1. php artisan db:seed --class=PermissionSeeder
+2. php artisan db:seed --class=DatabaseSeeder
+
+## Test account
+
+Admin:
+
+Email: admin@example.com
+Password: password123
+Shop Owner:
+
+Email: owner@example.com
+Password: password123
+Employee:
+
+Email: employee@example.com
+Password: password123
