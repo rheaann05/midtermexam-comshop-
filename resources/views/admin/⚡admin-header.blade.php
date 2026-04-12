@@ -181,16 +181,15 @@ new class extends Component
               <div class="hs-dropdown-menu hs-dropdown-open:opacity-100 w-60 transition-[opacity,margin] duration opacity-0 hidden z-20 bg-dropdown border border-dropdown-line rounded-xl shadow-xl" role="menu" aria-orientation="vertical" aria-labelledby="hs-dnad">
                 <div class="py-2 px-3.5">
                   <span class="font-medium text-foreground">
-                    James Collison
+                    {{auth()->user()->name}}
                   </span>
                   <p class="text-sm text-muted-foreground-1">
-                    jamescollison@site.com
+                    {{auth()->user()->email}}
                   </p>
-                  <div class="mt-1.5">
-                    <a class="flex justify-center items-center gap-x-1.5 py-2 px-2.5 font-medium text-[13px] bg-secondary text-secondary-foreground rounded-lg hover:bg-secondary-hover focus:outline-hidden focus:bg-secondary-focus disabled:opacity-50 disabled:pointer-events-none" href="#">
-                      Upgrade to Pro
-                    </a>
-                  </div>
+                  <p class="text-sm text-muted-foreground-1">
+                    Role:{{auth()->user()->roles->first()->name}}
+                  </p>
+
                 </div>
                 <div class="px-4 py-2 border-t border-dropdown-divider">
                   <!-- Switch/Toggle -->
