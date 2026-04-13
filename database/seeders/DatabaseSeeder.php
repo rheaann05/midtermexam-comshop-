@@ -4,8 +4,13 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
+<<<<<<< HEAD
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
+=======
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
+>>>>>>> 887e8b834b4f19bb55c18a98dc1ee18e35609f9a
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,6 +19,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+<<<<<<< HEAD
         // 1. Create the Roles (Spatie)
         $adminRole = Role::create(['name' => 'admin']);
         $ownerRole = Role::create(['name' => 'owner']);
@@ -38,5 +44,36 @@ class DatabaseSeeder extends Seeder
         $admin->assignRole($adminRole);
         
         $this->command->info('Roles and Users seeded successfully!');
+=======
+       $adminRole = Role::firstOrCreate(['name' => 'admin']);
+       $ownerRole = Role::firstOrCreate(['name' => 'owner']);
+       $employeeRole = Role::firstOrCreate(['name' => 'employee']);
+
+       $permissions = [
+        'can_view_any',
+        'can_view',
+        'can_create',
+        'can_update',
+        'can_delete'
+       ];
+
+       foreach ($permissions as $permission) {
+        Permission::firstOrCreate(['name' => $permission, 'guard_name' => 'web']);
+       }
+
+
+       $adminRole->syncPermissions($permissions);
+       $ownerRole->syncPermissions(['can_view', 'can_create', 'can_update']);
+       $employeeRole->syncPermissions(['can_view_any', 'can_view']);
+
+       $admin = User::firstOrCreate(['email' => 'admin@example.com'], ['name' => 'Admin User', 'password' => bcrypt('123123')]);
+       $admin->assignRole($adminRole);
+       $owner = User::firstOrCreate(['email' => 'owner@example.com'], ['name' => 'Owner User', 'password' => bcrypt('123123')]);
+       $owner->assignRole($ownerRole);
+
+       $employee = User::firstOrCreate(['email' => 'employee@example.com'], ['name' => 'Employee User', 'password' => bcrypt('123123')]);
+       $employee->assignRole($employeeRole);
+
+>>>>>>> 887e8b834b4f19bb55c18a98dc1ee18e35609f9a
     }
 }
