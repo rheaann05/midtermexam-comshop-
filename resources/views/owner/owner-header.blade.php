@@ -1,7 +1,7 @@
 <header class="flex flex-wrap md:justify-start md:flex-nowrap z-50 w-full bg-white border-b border-gray-200">
   <nav class="relative max-w-[85rem] w-full mx-auto md:flex md:items-center md:justify-between md:gap-3 py-3 px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center gap-x-1">
-      <a class="flex-none font-semibold text-xl text-gray-900 focus:outline-none focus:opacity-80" 
+      <a class="flex-none font-semibold text-xl text-gray-900 focus:outline-none focus:opacity-80"
          href="{{ Auth::check() ? route('owner.dashboard') : route('home') }}" aria-label="Brand">
         Owner Panel
       </a>
@@ -16,7 +16,7 @@
     <div id="hs-header-base" class="hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow md:block">
       <div class="overflow-hidden overflow-y-auto max-h-[75vh]">
         <div class="py-2 md:py-0 flex flex-col md:flex-row md:items-center gap-0.5 md:gap-1">
-          
+
           @auth
           <div class="grow">
             <div class="flex flex-col md:flex-row md:justify-end md:items-center gap-0.5 md:gap-1">
@@ -37,10 +37,8 @@
             <span class="text-sm font-medium text-gray-600 py-2">
               Welcome, {{ Auth::user()->name }}
             </span>
-            
-            <a class="py-2 px-3 inline-flex items-center font-medium text-sm rounded-lg bg-red-500 text-white hover:bg-red-600 transition" href="{{ route('logout') }}">
-              Logout
-            </a>
+
+                <livewire:auth::logout />
           </div>
           @endauth
 
