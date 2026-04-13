@@ -6,12 +6,12 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class AdminMiddleware
+class OwnerMiddleware
 {
     public function handle(Request $request, Closure $next): Response
     {
-        if (! $request->user() || ! $request->user()->hasRole('admin')) {
-            abort(403, 'Unauthorized. Admins only.');
+        if (! $request->user() || ! $request->user()->hasRole('owner')) {
+            abort(403, 'Unauthorized. Shop Owners only.');
         }
 
         return $next($request);

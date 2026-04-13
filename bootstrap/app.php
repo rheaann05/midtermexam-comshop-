@@ -7,9 +7,6 @@ use Illuminate\Foundation\Configuration\Middleware;
 use Spatie\Permission\Middleware\PermissionMiddleware;
 use Spatie\Permission\Middleware\RoleMiddleware;
 
-
-
-
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
         web: __DIR__.'/../routes/web.php',
@@ -18,10 +15,14 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->alias([ 
-            'auth'=>Authenticate::class,
-            'role'=>RoleMiddleware::class, 
-            'permission'=>PermissionMiddleware::class,
-        
+            'auth'       => Authenticate::class,
+            'role'       => RoleMiddleware::class, 
+            'permission' => PermissionMiddleware::class,
+            
+            // Your Custom Role Middleware
+            'admin'      => \App\Http\Middleware\AdminMiddleware::class,
+            'owner'      => \App\Http\Middleware\OwnerMiddleware::class,
+            'employee'   => \App\Http\Middleware\EmployeeMiddleware::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

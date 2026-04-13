@@ -1,4 +1,5 @@
-<?php
+<div>
+  <?php
 
 use Livewire\Component;
 
@@ -160,4 +161,5 @@ lg:block lg:-translate-x-full lg:end-auto lg:bottom-0" role="dialog" tabindex="-
 </div>
 <!-- End Sidebar -->
 <!-- ========== END MAIN SIDEBAR ========== -->
+</div>
 </div>
