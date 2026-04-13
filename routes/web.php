@@ -1,13 +1,12 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
         // Role Management
     Route::livewire ('/' , 'pages::public.home-page')->name('home');
 
-     Route::middleware(['auth', 'role:admin'])-> prefix('admin')->group (function () {
+     Route::middleware(['auth', 'admin'])-> prefix('admin')->group (function () {
         Route::livewire('/dashboard', 'pages::admin.dashboard')->name('admin.dashboard');
 
         //role
@@ -33,7 +32,9 @@ use Illuminate\Support\Facades\Route;
             Route::livewire('/edit/{user}', 'pages::owner.employee.edit-employee')->name('owner.employees.edit');
         });
 
-     Route::middleware(['auth', 'role:employee'])->prefix('employee')->group(function () {
+
+
+     Route::middleware(['auth', 'employee'])->prefix('employee')->group(function () {
         Route::livewire('/dashboard', 'pages::employee.dashboard')->name('employee.dashboard');
      });
 
