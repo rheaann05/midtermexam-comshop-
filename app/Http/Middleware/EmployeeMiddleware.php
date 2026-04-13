@@ -8,6 +8,17 @@ use Symfony\Component\HttpFoundation\Response;
 
 class EmployeeMiddleware
 {
+<<<<<<< HEAD
+    public function handle(Request $request, Closure $next): Response
+    {
+        if (! $request->user() || ! $request->user()->hasRole('employee')) {
+            abort(403, 'Unauthorized. Employees only.');
+        }
+
+        return $next($request);
+    }
+}
+=======
     /**
      * Handle an incoming request.
      *
@@ -21,3 +32,4 @@ class EmployeeMiddleware
         return $next($request);
     }
 }
+>>>>>>> 887e8b834b4f19bb55c18a98dc1ee18e35609f9a

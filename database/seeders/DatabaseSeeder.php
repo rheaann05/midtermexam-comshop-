@@ -3,20 +3,48 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+<<<<<<< HEAD
+use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Hash;
+=======
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+>>>>>>> 887e8b834b4f19bb55c18a98dc1ee18e35609f9a
 
 class DatabaseSeeder extends Seeder
 {
-    use WithoutModelEvents;
-
     /**
      * Seed the application's database.
      */
     public function run(): void
     {
+<<<<<<< HEAD
+        // 1. Create the Roles (Spatie)
+        $adminRole = Role::create(['name' => 'admin']);
+        $ownerRole = Role::create(['name' => 'owner']);
+        $employeeRole = Role::create(['name' => 'employee']);
+
+        // 2. Create the Shop Owner User
+        $owner = User::create([
+            'name' => 'Shop Owner',
+            'email' => 'owner@comshop.com',
+            'password' => Hash::make('password123'),
+        ]);
+
+        // 3. Assign the Role
+        $owner->assignRole($ownerRole);
+
+        // Optional: Create a Test Admin for your other routes
+        $admin = User::create([
+            'name' => 'System Admin',
+            'email' => 'admin@comshop.com',
+            'password' => Hash::make('password123'),
+        ]);
+        $admin->assignRole($adminRole);
+        
+        $this->command->info('Roles and Users seeded successfully!');
+=======
        $adminRole = Role::firstOrCreate(['name' => 'admin']);
        $ownerRole = Role::firstOrCreate(['name' => 'owner']);
        $employeeRole = Role::firstOrCreate(['name' => 'employee']);
@@ -46,5 +74,6 @@ class DatabaseSeeder extends Seeder
        $employee = User::firstOrCreate(['email' => 'employee@example.com'], ['name' => 'Employee User', 'password' => bcrypt('123123')]);
        $employee->assignRole($employeeRole);
 
+>>>>>>> 887e8b834b4f19bb55c18a98dc1ee18e35609f9a
     }
 }
