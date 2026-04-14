@@ -11,7 +11,7 @@
 </head>
 <body class="font-sans antialiased bg-gray-100 flex flex-col min-h-screen">
     
-    @include('owner.owner-header')
+    @include('employee.employee-header')
 
     <main class="flex-grow max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 w-full">
         {{ $slot }}

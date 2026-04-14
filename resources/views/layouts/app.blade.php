@@ -21,18 +21,10 @@
     <body>
         <livewire:public::header />
         <main> 
-            
-
-        
-    
         {{ $slot }} 
-        
         </main>
         <livewire:public::footer  /> 
         @livewireScripts
-        <script src="htpps://unpkg.com/preline/dist/preline.js">
-            
-        </script>
     </body>
 </html> 
     

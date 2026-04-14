@@ -1,32 +1,29 @@
 <?php
 
-use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
-use Spatie\Permission\Middleware\PermissionMiddleware;
-use Spatie\Permission\Middleware\RoleMiddleware;
+use App\Http\Middleware\AdminMidlleware;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
         web: __DIR__.'/../routes/web.php',
         commands: __DIR__.'/../routes/console.php',
-        health: '/up', 
+        health: '/up',
     )
-    ->withMiddleware(function (Middleware $middleware): void {
-        $middleware->alias([ 
+    ->withMiddleware(function (Middleware $middleware) {
+        $middleware->alias([
+            // Spatie Laravel Permission Middleware
+            'role'               => \Spatie\Permission\Middleware\RoleMiddleware::class,
+            'permission'         => \Spatie\Permission\Middleware\PermissionMiddleware::class,
+            'role_or_permission' => \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,
 
-            
-            // Your Custom Role Middleware
-            'admin'      => \App\Http\Middleware\AdminMiddleware::class,
-            'owner'      => \App\Http\Middleware\OwnerMiddleware::class,
-            'employee'   => \App\Http\Middleware\EmployeeMiddleware::class,
-
-
+            // Your Custom Middlewares
+            'admin'    => AdminMidlleware::class,
+            'owner'    => \App\Http\Middleware\OwnerMiddleware::class,
+            'employee' => \App\Http\Middleware\EmployeeMiddleware::class,
         ]);
     })
-    ->withExceptions(function (Exceptions $exceptions): void {
+    ->withExceptions(function (Exceptions $exceptions) {
         //
     })->create();
-    
-    

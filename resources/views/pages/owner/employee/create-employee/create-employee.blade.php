@@ -33,6 +33,13 @@
                             placeholder="••••••••">
                         @error('password') <p class="text-xs text-red-600 mt-2">{{ $message }}</p> @enderror
                     </div>
+
+                    <div>
+                        <label for="password_confirmation" class="block text-sm mb-2 text-gray-800 dark:text-white font-medium">Confirm Password</label>
+                        <input type="password" wire:model="password_confirmation" id="password_confirmation" 
+                            class="py-3 px-4 block w-full bg-white text-gray-900 border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 border placeholder-gray-400" 
+                            placeholder="••••••••">
+                    </div>
                     @endif
 
                     <div class="mt-4 flex flex-col sm:flex-row items-center justify-end gap-2">

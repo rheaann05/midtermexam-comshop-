@@ -1,31 +1,34 @@
 <?php
 
+namespace App\Livewire\Owner\Employees;
+
 use App\Models\User;
+use Illuminate\Support\Facades\Gate;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 
 new #[Layout('layouts.owner')] class extends Component
 {
-    public User $user;
+    public User $user; 
+
     public $name;
     public $email;
 
     public function mount(User $user)
     {
-        // RBAC Check: Ensure the owner isn't trying to edit an admin
-        if (!$user->hasRole('employee')) {
-            return redirect()->route('owner.employees.view');
-        }
+        // Policy Check: Owner can only manage Employees
+        Gate::authorize('manage', $user);
 
         $this->user = $user;
         $this->name = $user->name;
         $this->email = $user->email;
     }
 
-    public function rules()
+    protected function rules()
     {
         return [
             'name' => 'required|string|min:3',
+            // Unique check ignores current user ID
             'email' => 'required|email|unique:users,email,' . $this->user->id,
         ];
     }

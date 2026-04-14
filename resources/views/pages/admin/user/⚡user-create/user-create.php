@@ -2,8 +2,10 @@
 
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Livewire\Attributes\Computed; 
 use Livewire\Attributes\Layout;
 use Livewire\Component;
+use Spatie\Permission\Models\Role; 
 
 new #[Layout('layouts::admin')] class extends Component
 {
@@ -11,7 +13,13 @@ new #[Layout('layouts::admin')] class extends Component
     public $email;
     public $password;
     public $password_confirmation;
-    public $selectedRole; // single role only
+    public $selectedRole; 
+
+    #[Computed]
+    public function roles()
+    {
+        return Role::all(); 
+    }
 
     protected function rules()
     {
@@ -19,7 +27,7 @@ new #[Layout('layouts::admin')] class extends Component
             'name' => 'required|string|min:3',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|string|min:6|confirmed',
-            'selectedRole' => 'required|string'
+            'selectedRole' => 'required|string|exists:roles,name' 
         ];
     }
 
