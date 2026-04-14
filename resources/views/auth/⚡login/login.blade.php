@@ -24,7 +24,6 @@
 
                 <div class="relative">
                     <div class="absolute inset-0 flex items-center" aria-hidden="true">
-                        <div class="w-full border-t border-line-2"></div>
                     </div>
                     <div class="relative flex justify-center text-xs uppercase">
                         <span class="bg-card px-3 text-muted-foreground font-medium">Or continue with email</span>
